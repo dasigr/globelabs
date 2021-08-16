@@ -1,0 +1,6 @@
+name: 'Globe Labs'
+type: module
+description: 'Drupal integration to Globe Labs APIs.'
+package: 'Globe Labs'
+core: 8.x
+core_version_requirement: ^8 || ^9

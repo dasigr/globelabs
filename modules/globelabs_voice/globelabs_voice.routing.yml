@@ -1,0 +1,15 @@
+globelabs_voice.example:
+  path: '/globelabs-voice/example'
+  defaults:
+    _title: 'Example'
+    _controller: '\Drupal\globelabs_voice\Controller\GlobelabsVoiceController::build'
+  requirements:
+    _permission: 'access content'
+
+globelabs_voice.settings_form:
+  path: '/admin/config/system/globelabs-voice'
+  defaults:
+    _title: 'Globe Labs Voice settings'
+    _form: 'Drupal\globelabs_voice\Form\SettingsForm'
+  requirements:
+    _permission: 'administer globelabs_voice configuration'

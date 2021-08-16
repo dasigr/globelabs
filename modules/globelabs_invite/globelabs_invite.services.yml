@@ -1,0 +1,6 @@
+services:
+  globelabs_invite.event_subscriber:
+    class: Drupal\globelabs_invite\EventSubscriber\GlobelabsInviteSubscriber
+    arguments: ['@messenger']
+    tags:
+      - { name: event_subscriber }

@@ -1,0 +1,4 @@
+administer globelabs_voice configuration:
+  title: 'Administer globelabs_voice configuration'
+  description: 'Optional description.'
+  restrict access: true

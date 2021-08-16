@@ -1,0 +1,15 @@
+globelabs_rewards.example:
+  path: '/globelabs-rewards/example'
+  defaults:
+    _title: 'Example'
+    _controller: '\Drupal\globelabs_rewards\Controller\GlobelabsRewardsController::build'
+  requirements:
+    _permission: 'access content'
+
+globelabs_rewards.settings_form:
+  path: '/admin/config/system/globelabs-rewards'
+  defaults:
+    _title: 'Globe Labs Rewards settings'
+    _form: 'Drupal\globelabs_rewards\Form\SettingsForm'
+  requirements:
+    _permission: 'administer globelabs_rewards configuration'

@@ -1,0 +1,6 @@
+globelabs_voice.settings_form:
+  title: Globe Labs Voice
+  description: Configure Globe Labs Voice.
+  parent: system.admin_config_system
+  route_name: globelabs_voice.settings_form
+  weight: 10

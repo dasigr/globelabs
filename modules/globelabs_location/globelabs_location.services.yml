@@ -1,0 +1,6 @@
+services:
+  globelabs_location.event_subscriber:
+    class: Drupal\globelabs_location\EventSubscriber\GlobelabsLocationSubscriber
+    arguments: ['@messenger']
+    tags:
+      - { name: event_subscriber }

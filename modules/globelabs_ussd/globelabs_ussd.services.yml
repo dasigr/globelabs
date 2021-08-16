@@ -1,0 +1,6 @@
+services:
+  globelabs_ussd.event_subscriber:
+    class: Drupal\globelabs_ussd\EventSubscriber\GlobelabsUssdSubscriber
+    arguments: ['@messenger']
+    tags:
+      - { name: event_subscriber }

@@ -1,0 +1,4 @@
+administer globelabs_sponsored_access configuration:
+  title: 'Administer globelabs_sponsored_access configuration'
+  description: 'Optional description.'
+  restrict access: true

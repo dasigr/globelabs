@@ -1,0 +1,4 @@
+administer globelabs_charging configuration:
+  title: 'Administer globelabs_charging configuration'
+  description: 'Optional description.'
+  restrict access: true

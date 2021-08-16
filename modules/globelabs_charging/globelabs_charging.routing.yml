@@ -1,0 +1,15 @@
+globelabs_charging.example:
+  path: '/globelabs-charging/example'
+  defaults:
+    _title: 'Example'
+    _controller: '\Drupal\globelabs_charging\Controller\GlobelabsChargingController::build'
+  requirements:
+    _permission: 'access content'
+
+globelabs_charging.settings_form:
+  path: '/admin/config/system/globelabs-charging'
+  defaults:
+    _title: 'Globe Labs Charging settings'
+    _form: 'Drupal\globelabs_charging\Form\SettingsForm'
+  requirements:
+    _permission: 'administer globelabs_charging configuration'

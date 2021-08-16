@@ -1,0 +1,4 @@
+administer globelabs_rewards configuration:
+  title: 'Administer globelabs_rewards configuration'
+  description: 'Optional description.'
+  restrict access: true

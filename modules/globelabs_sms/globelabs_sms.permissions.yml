@@ -1,0 +1,4 @@
+administer globelabs_sms configuration:
+  title: 'Administer globelabs_sms configuration'
+  description: 'Optional description.'
+  restrict access: true

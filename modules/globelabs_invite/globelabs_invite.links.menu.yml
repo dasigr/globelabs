@@ -1,0 +1,6 @@
+globelabs_invite.settings_form:
+  title: Globe Labs Invite
+  description: Configure Globe Labs Invite.
+  parent: system.admin_config_system
+  route_name: globelabs_invite.settings_form
+  weight: 10

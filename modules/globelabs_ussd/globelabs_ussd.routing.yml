@@ -1,0 +1,15 @@
+globelabs_ussd.example:
+  path: '/globelabs-ussd/example'
+  defaults:
+    _title: 'Example'
+    _controller: '\Drupal\globelabs_ussd\Controller\GlobelabsUssdController::build'
+  requirements:
+    _permission: 'access content'
+
+globelabs_ussd.settings_form:
+  path: '/admin/config/system/globelabs-ussd'
+  defaults:
+    _title: 'Globe Labs USSD settings'
+    _form: 'Drupal\globelabs_ussd\Form\SettingsForm'
+  requirements:
+    _permission: 'administer globelabs_ussd configuration'

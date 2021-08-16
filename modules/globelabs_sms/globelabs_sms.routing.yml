@@ -1,0 +1,15 @@
+globelabs_sms.example:
+  path: '/globelabs-sms/example'
+  defaults:
+    _title: 'Example'
+    _controller: '\Drupal\globelabs_sms\Controller\GlobelabsSmsController::build'
+  requirements:
+    _permission: 'access content'
+
+globelabs_sms.settings_form:
+  path: '/admin/config/system/globelabs-sms'
+  defaults:
+    _title: '&#039;Globe Labs SMS&#039; settings'
+    _form: 'Drupal\globelabs_sms\Form\SettingsForm'
+  requirements:
+    _permission: 'administer globelabs_sms configuration'

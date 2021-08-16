@@ -1,0 +1,6 @@
+globelabs_sms.settings_form:
+  title: &#039;Globe Labs SMS&#039;
+  description: Configure &#039;Globe Labs SMS&#039;.
+  parent: system.admin_config_system
+  route_name: globelabs_sms.settings_form
+  weight: 10

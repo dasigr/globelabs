@@ -1,0 +1,4 @@
+administer globelabs_location configuration:
+  title: 'Administer globelabs_location configuration'
+  description: 'Optional description.'
+  restrict access: true

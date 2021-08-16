@@ -1,0 +1,15 @@
+globelabs_invite.example:
+  path: '/globelabs-invite/example'
+  defaults:
+    _title: 'Example'
+    _controller: '\Drupal\globelabs_invite\Controller\GlobelabsInviteController::build'
+  requirements:
+    _permission: 'access content'
+
+globelabs_invite.settings_form:
+  path: '/admin/config/system/globelabs-invite'
+  defaults:
+    _title: 'Globe Labs Invite settings'
+    _form: 'Drupal\globelabs_invite\Form\SettingsForm'
+  requirements:
+    _permission: 'administer globelabs_invite configuration'

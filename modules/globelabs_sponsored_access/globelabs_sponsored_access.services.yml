@@ -1,0 +1,6 @@
+services:
+  globelabs_sponsored_access.event_subscriber:
+    class: Drupal\globelabs_sponsored_access\EventSubscriber\GlobelabsSponsoredAccessSubscriber
+    arguments: ['@messenger']
+    tags:
+      - { name: event_subscriber }

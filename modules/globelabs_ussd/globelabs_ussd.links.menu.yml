@@ -1,0 +1,6 @@
+globelabs_ussd.settings_form:
+  title: Globe Labs USSD
+  description: Configure Globe Labs USSD.
+  parent: system.admin_config_system
+  route_name: globelabs_ussd.settings_form
+  weight: 10

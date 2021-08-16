@@ -1,0 +1,8 @@
+name: 'Globe Labs Charging'
+type: module
+description: 'Drupal integration to Globe Labs Charging API.'
+package: 'Globe Labs'
+core: 8.x
+core_version_requirement: ^8 || ^9
+dependencies:
+  - globelabs

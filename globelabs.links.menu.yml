@@ -1,0 +1,6 @@
+globelabs.settings_form:
+  title: globelabs
+  description: Configure globelabs.
+  parent: system.admin_config_system
+  route_name: globelabs.settings_form
+  weight: 10

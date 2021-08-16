@@ -1,0 +1,4 @@
+administer globelabs configuration:
+  title: 'Administer globelabs configuration'
+  description: 'Optional description.'
+  restrict access: true

@@ -1,0 +1,4 @@
+administer globelabs_invite configuration:
+  title: 'Administer globelabs_invite configuration'
+  description: 'Optional description.'
+  restrict access: true
