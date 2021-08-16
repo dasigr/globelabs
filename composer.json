@@ -1,0 +1,13 @@
+{
+    "name": "dasigr/globelabs",
+    "description": "Drupal integration to Globe Labs API.",
+    "type": "drupal-module",
+    "license": "GPL-2.0-or-later",
+    "authors": [
+        {
+            "name": "Romualdo Dasig",
+            "email": "dasig.rg@a5project.com"
+        }
+    ],
+    "require": {}
+}
