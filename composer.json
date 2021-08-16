@@ -1,7 +1,7 @@
 {
     "name": "dasigr/globelabs",
     "description": "Drupal integration to Globe Labs API.",
-    "type": "drupal-module",
+    "type": "drupal-custom-module",
     "license": "GPL-2.0-or-later",
     "authors": [
         {
