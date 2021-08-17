@@ -1,15 +1,23 @@
-globelabs.example:
-  path: '/globelabs/example'
+globelabs.connect:
+  path: '/globelabs/connect'
   defaults:
-    _title: 'Example'
+    _title: 'Globe Labs API Connect'
     _controller: '\Drupal\globelabs\Controller\GlobelabsController::build'
+  requirements:
+    _permission: 'access content'
+
+globelabs.oauth_callback:
+  path: '/globelabs/oauth/callback'
+  defaults:
+    _title: 'Globe Labs API Callback'
+    _controller: '\Drupal\globelabs\Controller\GlobelabsController::callback'
   requirements:
     _permission: 'access content'
 
 globelabs.settings_form:
   path: '/admin/config/system/globelabs'
   defaults:
-    _title: 'globelabs settings'
+    _title: 'Globe Labs settings'
     _form: 'Drupal\globelabs\Form\SettingsForm'
   requirements:
     _permission: 'administer globelabs configuration'
