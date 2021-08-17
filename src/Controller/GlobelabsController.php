@@ -138,7 +138,7 @@ class GlobelabsController extends ControllerBase {
   }
 
   /**
-   * Send an SMS message to the subscriber.
+   * Send an SMS message to a subscriber.
    * 
    * @param $shortcode
    * @param $address
@@ -164,7 +164,7 @@ class GlobelabsController extends ControllerBase {
         "Content-Type: application/json"
       ),
     ));
-    
+
     $json_response = curl_exec($curl);
     $err = curl_error($curl);
     
