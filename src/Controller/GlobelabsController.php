@@ -14,9 +14,11 @@ class GlobelabsController extends ControllerBase {
    */
   public function build() {
 
+    $app_id = "";
+
     $build['content'] = [
       '#type' => 'item',
-      '#markup' => '<a href="https://developer.globelabs.com.ph/dialog/oauth/B4AMuqnMMeCb5cp5pnTMnGC8k4XqupXA" target="_self">' . $this->t('Connect to Globe Labs API') . '</a>',
+      '#markup' => '<a href="https://developer.globelabs.com.ph/dialog/oauth/' . $app_id . '" target="_self">' . $this->t('Connect to Globe Labs API') . '</a>',
     ];
 
     return $build;
@@ -36,12 +38,18 @@ class GlobelabsController extends ControllerBase {
     $code = \Drupal::request()->get('code');
     
     // Get access token.
-     $token = $this->get_access_token($app_id, $app_secret, $code);
-     $access_token = $token->access_token;
-     $address = $token->subscriber_number;
+    $token = $this->get_access_token($app_id, $app_secret, $code);
+    $access_token = $token->access_token;
+    $address = $token->subscriber_number;
 
     // Get location.
     $location = $this->get_location($access_token, $address);
+    
+    // Send SMS.
+    $shortcode = "";
+    $clientCorrelator = "";
+    $message = "";
+    $this->send_sms($access_token, $address, $shortcode, $message, $clientCorrelator);
     
     $build['content'] = [
       '#type' => 'item',
@@ -123,6 +131,47 @@ class GlobelabsController extends ControllerBase {
     if ($err) {
       echo "cURL Error #:" . $err;
       return null;
+    } else {
+      $response = \GuzzleHttp\json_decode($json_response);
+      return $response;
+    }
+  }
+
+  /**
+   * Send an SMS message to the subscriber.
+   * 
+   * @param $shortcode
+   * @param $address
+   * @param $access_token
+   * @param $message
+   * @param $clientCorrelator
+   * 
+   * @return mixed
+   */
+  private function send_sms($access_token, $address, $shortcode, $message, $clientCorrelator) {
+    $curl = curl_init();
+    
+    curl_setopt_array($curl, array(
+      CURLOPT_URL => "https://devapi.globelabs.com.ph/smsmessaging/v1/outbound/".$shortcode."/requests?access_token=".$access_token ,
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_ENCODING => "",
+      CURLOPT_MAXREDIRS => 10,
+      CURLOPT_TIMEOUT => 30,
+      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+      CURLOPT_CUSTOMREQUEST => "POST",
+      CURLOPT_POSTFIELDS => "{\"outboundSMSMessageRequest\": { \"clientCorrelator\": \"".$clientCorrelator."\", \"senderAddress\": \"".$shortcode."\", \"outboundSMSTextMessage\": {\"message\": \"".$message."\"}, \"address\": \"".$address."\" } }",
+      CURLOPT_HTTPHEADER => array(
+        "Content-Type: application/json"
+      ),
+    ));
+    
+    $json_response = curl_exec($curl);
+    $err = curl_error($curl);
+    
+    curl_close($curl);
+    
+    if ($err) {
+      echo "cURL Error #:" . $err;
     } else {
       $response = \GuzzleHttp\json_decode($json_response);
       return $response;
