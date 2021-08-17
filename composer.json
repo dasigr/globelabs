@@ -5,9 +5,16 @@
     "license": "GPL-2.0-or-later",
     "authors": [
         {
-            "name": "Romualdo Dasig",
-            "email": "dasig.rg@a5project.com"
+            "name": "Romualdo Dasig (kylegt)",
+            "email": "dasig.rg@a5project.com",
+            "homepage": "https://dasigr.com",
+            "role": "Maintainer"
         }
     ],
+    "homepage": "https://github.com/dasigr/globelabs",
+    "support": {
+        "issues": "https://github.com/dasigr/globelabs/issues",
+        "source": "https://github.com/dasigr/globelabs.git"
+    },
     "require": {}
 }
