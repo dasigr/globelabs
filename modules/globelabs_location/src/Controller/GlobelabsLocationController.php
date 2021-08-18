@@ -18,7 +18,7 @@ class GlobelabsLocationController extends ControllerBase {
     $authService = new AuthService();
     $locationService = new LocationService();
 
-    $code = $authService->get_code();
+    $code = $authService->get_authorization_code();
 
     // Get access token.
     $token = $authService->get_access_token($code);

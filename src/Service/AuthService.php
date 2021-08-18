@@ -10,9 +10,14 @@ namespace Drupal\globelabs\Service;
 
 
 class AuthService {
-  
+
+  /**
+   * Redirect to Globe Labs API Authorization Dialog.
+   * 
+   * @return string
+   */
   public function get_connect_link() {
-    $app_id = "kodMIEqyoGhRdcEnyeTyMXhR9oBjIxGy";
+    $app_id = \Drupal::config('globelabs.settings')->get('app_id');
     $link = "https://developer.globelabs.com.ph/dialog/oauth/" . $app_id;
     
     return $link;
@@ -23,8 +28,10 @@ class AuthService {
    * 
    * @param $code
    */
-  public function save_code($code) {
-    // Save code.
+  public function save_authorization_code($authorization_code) {
+    \Drupal::service('config.factory')->getEditable('globelabs.settings')
+           ->set('authorization_code', $authorization_code)
+           ->save();
   }
 
   /**
@@ -32,10 +39,20 @@ class AuthService {
    * 
    * @return string
    */
-  public function get_code() {
-    $code = '9sgo7kaSGqkbyFrKk65H5kqAxuqejerugdB8LfzgkqLhbdbyAUgr9yrtk9kGgUgny8bI5Boj8Han67xInAgBAsLdaLgH9ayo4unx597Ik5rj8hBeB9Lt5zX4XH9dTMp5B6EcXAeH4EBzyt97r9RhgA5dbInGybgudjaRdHa9g9MsMy6MKIykob9H8qyn4IyrkybUzX9Gnt8dbLMUk8k45hGLBk5fRej7ku6qq8nubMkqxHMpkoEF4B7MeSyqLq6s';
+  public function get_authorization_code() {
+    $authorization_code = \Drupal::config('globelabs.settings')
+                                 ->get('authorization_code');
     
-    return $code;
+    return $authorization_code;
+  }
+
+  /**
+   * Revoke access to Globe Labs API.
+   */
+  public function revoke_authorization_code() {
+    \Drupal::service('config.factory')->getEditable('globelabs.settings')
+           ->set('authorization_code', '')
+           ->save();
   }
 
   /**
@@ -46,8 +63,8 @@ class AuthService {
    * @return mixed
    */
   public function get_access_token($code) {
-    $app_id = "";
-    $app_secret = "";
+    $app_id = \Drupal::config('globelabs.settings')->get('app_id');
+    $app_secret = \Drupal::config('globelabs.settings')->get('app_secret');
 
     $curl = curl_init();
 

@@ -7,7 +7,7 @@ use Drupal\globelabs\Service\AuthService;
 use Drupal\globelabs_sms\Service\SmsService;
 
 /**
- * Returns responses for &#039;Globe Labs SMS&#039; routes.
+ * Returns responses for Globe Labs SMS routes.
  */
 class GlobelabsSmsController extends ControllerBase {
 
@@ -15,10 +15,23 @@ class GlobelabsSmsController extends ControllerBase {
    * Builds the response.
    */
   public function build() {
+
+    $build['content'] = [
+      '#type'   => 'item',
+      '#markup' => '<a href="https://finance-api.ddev.site/globelabs/sms/send">' . $this->t('Send SMS') . '</a>',
+    ];
+
+    return $build;
+  }
+
+  /**
+   * Send an SMS message.
+   */
+  public function send() {
     $authService = new AuthService();
     $smsService = new SmsService();
 
-    $code = $authService->get_code();
+    $code = $authService->get_authorization_code();
 
     // Get access token.
     $token = $authService->get_access_token($code);
@@ -26,17 +39,14 @@ class GlobelabsSmsController extends ControllerBase {
     $address = $token->subscriber_number;
 
     // Send SMS.
-    $shortcode = "";
+    $shortcode = \Drupal::config('globelabs.settings')->get('short_code');
     $clientCorrelator = "";
-    $message = "";
+    $message = "PHP SMS Test";
     $smsService->send_sms($access_token, $address, $shortcode, $message, $clientCorrelator);
 
-    $build['content'] = [
-      '#type' => 'item',
-      '#markup' => $this->t('SMS sent!'),
-    ];
+    \Drupal::messenger()->addStatus(t('SMS message sent!'));
 
-    return $build;
+    return $this->redirect('globelabs_sms.index');
   }
 
 }

@@ -1,7 +1,7 @@
-globelabs.connect:
-  path: '/globelabs/connect'
+globelabs.index:
+  path: '/globelabs'
   defaults:
-    _title: 'Globe Labs API Connect'
+    _title: 'Globe Labs'
     _controller: '\Drupal\globelabs\Controller\GlobelabsController::build'
   requirements:
     _permission: 'access content'
@@ -11,6 +11,14 @@ globelabs.oauth_callback:
   defaults:
     _title: 'Globe Labs API Callback'
     _controller: '\Drupal\globelabs\Controller\GlobelabsController::callback'
+  requirements:
+    _permission: 'access content'
+
+globelabs.oauth_revoke:
+  path: '/globelabs/revoke'
+  defaults:
+    _title: 'Globe Labs API Revoke'
+    _controller: '\Drupal\globelabs\Controller\GlobelabsController::revoke'
   requirements:
     _permission: 'access content'
 

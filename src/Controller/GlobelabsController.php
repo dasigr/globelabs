@@ -16,34 +16,53 @@ class GlobelabsController extends ControllerBase {
   public function build() {
     $authService = new AuthService();
 
-    $connect_link = $authService->get_connect_link();
+    if (empty($authService->get_authorization_code())) {
+      $link = '<a href="' . $authService->get_connect_link() . '" target="_self">' . $this->t('Connect') . '</a>';
+    } else {
+      $link = '<a href="https://finance-api.ddev.site/globelabs/revoke" target="_self">' . $this->t('Revoke') . '</a>';
+    }
 
     $build['content'] = [
       '#type' => 'item',
-      '#markup' => '<a href="' . $connect_link . '" target="_self">' . $this->t('Connect to Globe Labs API') . '</a>',
+      '#markup' => $link,
     ];
 
     return $build;
   }
 
   /**
-   * Callback page.
+   * Globe Labs callback url.
    * 
-   * @return mixed
+   * @return \Symfony\Component\HttpFoundation\RedirectResponse
    */
   public function callback() {
     $authService = new AuthService();
     
     // Get authorization code.
-    $code = \Drupal::request()->get('code');
-    $authService->save_code($code);
+    $authorization_code = \Drupal::request()->get('code');
+    $authService->save_authorization_code($authorization_code);
 
-    $build['content'] = [
-      '#type' => 'item',
-      '#markup' => $this->t('App is now authorized to perform actions on behalf of the subscriber!'),
-    ];
+    \Drupal::messenger()->addStatus(t('Thanks for authorizing us to send you SMS messages and get your location.'));
+    
+    return $this->redirect('globelabs.index');
+  }
 
-    return $build;
+  /**
+   * Revoke authorization code.
+   * 
+   * @return \Symfony\Component\HttpFoundation\RedirectResponse
+   */
+  public function revoke() {
+    $authService = new AuthService();
+    
+    // Revoke authorization code.
+    $authService->revoke_authorization_code();
+
+    $short_code = \Drupal::config('globelabs.settings')
+                                 ->get('short_code');
+    \Drupal::messenger()->addStatus(t('Text STOP to ' . $short_code));
+
+    return $this->redirect('globelabs.index');
   }
 
 }

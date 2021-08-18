@@ -1,15 +1,23 @@
-globelabs_sms.example:
-  path: '/globelabs-sms/example'
+globelabs_sms.index:
+  path: '/globelabs/sms'
   defaults:
-    _title: 'Example'
+    _title: 'Globe Labs SMS'
     _controller: '\Drupal\globelabs_sms\Controller\GlobelabsSmsController::build'
   requirements:
     _permission: 'access content'
 
-globelabs_sms.settings_form:
-  path: '/admin/config/system/globelabs-sms'
+globelabs_sms.send:
+  path: '/globelabs/sms/send'
   defaults:
-    _title: '&#039;Globe Labs SMS&#039; settings'
+    _title: 'Send SMS'
+    _controller: '\Drupal\globelabs_sms\Controller\GlobelabsSmsController::send'
+  requirements:
+    _permission: 'access content'
+
+globelabs_sms.settings_form:
+  path: '/admin/config/system/globelabs/sms'
+  defaults:
+    _title: 'Globe Labs SMS settings'
     _form: 'Drupal\globelabs_sms\Form\SettingsForm'
   requirements:
     _permission: 'administer globelabs_sms configuration'
