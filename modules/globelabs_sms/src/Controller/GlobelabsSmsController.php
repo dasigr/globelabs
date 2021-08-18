@@ -3,6 +3,8 @@
 namespace Drupal\globelabs_sms\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
+use Drupal\Core\Link;
+use Drupal\Core\Url;
 use Drupal\globelabs\Service\AuthService;
 use Drupal\globelabs_sms\Service\SmsService;
 
@@ -16,9 +18,12 @@ class GlobelabsSmsController extends ControllerBase {
    */
   public function build() {
 
+    $url = Url::fromRoute('globelabs_sms.send');
+    $link = Link::fromTextAndUrl('Send SMS', $url)->toString();
+
     $build['content'] = [
       '#type'   => 'item',
-      '#markup' => '<a href="https://finance-api.ddev.site/globelabs/sms/send">' . $this->t('Send SMS') . '</a>',
+      '#markup' => $link,
     ];
 
     return $build;

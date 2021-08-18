@@ -3,6 +3,8 @@
 namespace Drupal\globelabs\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
+use Drupal\Core\Link;
+use Drupal\Core\Url;
 use Drupal\globelabs\Service\AuthService;
 
 /**
@@ -19,7 +21,8 @@ class GlobelabsController extends ControllerBase {
     if (empty($authService->get_authorization_code())) {
       $link = '<a href="' . $authService->get_connect_link() . '" target="_self">' . $this->t('Connect') . '</a>';
     } else {
-      $link = '<a href="https://finance-api.ddev.site/globelabs/revoke" target="_self">' . $this->t('Revoke') . '</a>';
+      $url = Url::fromRoute('globelabs.oauth_revoke');
+      $link = Link::fromTextAndUrl('Revoke', $url)->toString();
     }
 
     $build['content'] = [
