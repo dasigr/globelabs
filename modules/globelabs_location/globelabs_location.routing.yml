@@ -1,7 +1,7 @@
-globelabs_location.example:
-  path: '/globelabs-location/example'
+globelabs_location.index:
+  path: '/globelabs/location'
   defaults:
-    _title: 'Example'
+    _title: 'Globe Labs Location'
     _controller: '\Drupal\globelabs_location\Controller\GlobelabsLocationController::build'
   requirements:
     _permission: 'access content'
